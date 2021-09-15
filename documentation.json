@@ -1,0 +1,342 @@
+{
+    "pipes": [],
+    "interfaces": [],
+    "injectables": [],
+    "guards": [],
+    "interceptors": [],
+    "classes": [],
+    "directives": [
+        {
+            "name": "GrandParent",
+            "id": "directive-GrandParent-199dedbe59035450058a740e64104773",
+            "file": "projects/storybook-example-lib/src/lib/grand-parent.ts",
+            "type": "directive",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Directive, EventEmitter, Input, OnInit, Output } from '@angular/core';\n\n@Directive()\nexport abstract class GrandParent implements OnInit {\n  private _grandParentInput!: string;\n  @Input()\n  get grandParentInput(): string {\n    return this._grandParentInput;\n  }\n  set grandParentInput(grandParentInput: string) {\n    this._grandParentInput = grandParentInput;\n    this.grandParentOutput.emit(grandParentInput);\n  }\n  @Output() grandParentOutput = new EventEmitter();\n\n  ngOnInit(): void {\n    console.log(this.grandParentInput);\n    this.grandParentOutput.emit('emitting value on init');\n  }\n}\n",
+            "providers": [],
+            "inputsClass": [
+                {
+                    "name": "grandParentInput",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 7,
+                    "type": "string"
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "grandParentOutput",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "EventEmitter"
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "propertiesClass": [
+                {
+                    "name": "_grandParentInput",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 5,
+                    "modifierKind": [
+                        120
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 16,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "implements": [
+                "OnInit"
+            ],
+            "accessors": {
+                "grandParentInput": {
+                    "name": "grandParentInput",
+                    "setSignature": {
+                        "name": "grandParentInput",
+                        "type": "void",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "args": [
+                            {
+                                "name": "grandParentInput",
+                                "type": "string",
+                                "deprecated": false,
+                                "deprecationMessage": ""
+                            }
+                        ],
+                        "returnType": "void",
+                        "line": 10,
+                        "jsdoctags": [
+                            {
+                                "name": "grandParentInput",
+                                "type": "string",
+                                "deprecated": false,
+                                "deprecationMessage": "",
+                                "tagName": {
+                                    "text": "param"
+                                }
+                            }
+                        ]
+                    },
+                    "getSignature": {
+                        "name": "grandParentInput",
+                        "type": "string",
+                        "returnType": "string",
+                        "line": 7
+                    }
+                }
+            }
+        },
+        {
+            "name": "Parent",
+            "id": "directive-Parent-ed676e57d807048f707666b7bd9011db",
+            "file": "projects/storybook-example-lib/parent/src/parent.class.ts",
+            "type": "directive",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Directive } from '@angular/core';\r\n\r\nimport { GrandParent } from 'storybook-example-lib';\r\n\r\n@Directive()\r\nexport class Parent extends GrandParent {}\r\n",
+            "providers": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "propertiesClass": [],
+            "methodsClass": []
+        }
+    ],
+    "components": [
+        {
+            "name": "ChildComponent",
+            "id": "component-ChildComponent-c688ecd413e605a342f9e2e469b83ec6",
+            "file": "stories/child.component.ts",
+            "changeDetection": "ChangeDetectionStrategy.OnPush",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "child",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./child.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "childInput",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 12,
+                    "type": "string"
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core';\n\nimport { Parent } from 'projects/storybook-example-lib/parent/src/parent.class';\n\n@Component({\n  selector: 'child',\n  templateUrl: './child.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport default class ChildComponent extends Parent {\n  @Input()\n  childInput?: string;\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": "Parent",
+            "templateData": "<div>Child input: {{ childInput }}</div>\r\n<div>Grandparent input: {{ grandParentInput }}</div>\r\n"
+        }
+    ],
+    "modules": [],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "context",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/storybook-example-lib/src/test.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+            },
+            {
+                "name": "Primary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/child.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "require",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/storybook-example-lib/src/test.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "literal type"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/child.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<ChildComponent>",
+                "defaultValue": "(args: ChildComponent) => ({\n  props: args,\n})"
+            }
+        ],
+        "functions": [],
+        "typealiases": [],
+        "enumerations": [],
+        "groupedVariables": {
+            "projects/storybook-example-lib/src/test.ts": [
+                {
+                    "name": "context",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/storybook-example-lib/src/test.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+                },
+                {
+                    "name": "require",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/storybook-example-lib/src/test.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "literal type"
+                }
+            ],
+            "stories/child.stories.ts": [
+                {
+                    "name": "Primary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/child.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/child.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<ChildComponent>",
+                    "defaultValue": "(args: ChildComponent) => ({\n  props: args,\n})"
+                }
+            ]
+        },
+        "groupedFunctions": {},
+        "groupedEnumerations": {},
+        "groupedTypeAliases": {}
+    },
+    "routes": [],
+    "coverage": {
+        "count": 0,
+        "status": "low",
+        "files": [
+            {
+                "filePath": "projects/storybook-example-lib/parent/src/parent.class.ts",
+                "type": "directive",
+                "linktype": "directive",
+                "name": "Parent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/storybook-example-lib/src/lib/grand-parent.ts",
+                "type": "directive",
+                "linktype": "directive",
+                "name": "GrandParent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/storybook-example-lib/src/test.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "context",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/storybook-example-lib/src/test.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "require",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/child.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ChildComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/child.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Primary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/child.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            }
+        ]
+    }
+}
